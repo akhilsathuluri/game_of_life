@@ -2,6 +2,7 @@
 #include<Eigen/Dense>
 #include <stdlib.h>
 #include <unistd.h>
+#include <random>
 
 using namespace Eigen;
 
@@ -28,7 +29,7 @@ int main(int argc, char const *argv[]) {
   // updated_world = update_world(updated_augments);
   // std::cout<<updated_world.block<num,num>(1,1)<<std::endl;
   updated_world = world;
-  for (size_t count = 0; count < 30; count++) {
+  for (size_t count = 0; count < 1000; count++) {
     updated_augments = update_augments(updated_world);
     updated_world = update_world(updated_augments);
     std::cout<<updated_world.block<num,num>(1,1)<<std::endl;
@@ -53,8 +54,15 @@ MatrixXd create_world(){
   world(3,3) = 1;
   world(1,3) = 1;
   world(2,3) = 1;
-  // world(1,num) = 1;
-  // world(num,1) = 1;
+  //Random initialisation
+  bool b;
+  for (size_t i = 1; i <= num; i++) {
+    for (size_t j = 1; j <= num; j++) {
+      auto gen = std::bind(std::uniform_int_distribution<>(0,1),std::default_random_engine());
+      // b = gen();
+      world(i,j) = rand()%2;
+    }
+  }
   return world;
 }
 
