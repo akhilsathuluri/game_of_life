@@ -1,5 +1,7 @@
 #include<iostream>
 #include<Eigen/Dense>
+#include <stdlib.h>
+#include <unistd.h>
 
 using namespace Eigen;
 
@@ -30,6 +32,8 @@ int main(int argc, char const *argv[]) {
     updated_augments = update_augments(updated_world);
     updated_world = update_world(updated_augments);
     std::cout<<updated_world.block<num,num>(1,1)<<std::endl;
+    usleep(200000);
+    system("clear");
   }
 
   return 0;
