@@ -28,11 +28,11 @@ int main(int argc, char const *argv[]) {
   // updated_world = update_world(updated_augments);
   // std::cout<<updated_world.block<num,num>(1,1)<<std::endl;
   updated_world = world;
-  for (size_t count = 0; count < 100; count++) {
+  for (size_t count = 0; count < 30; count++) {
     updated_augments = update_augments(updated_world);
     updated_world = update_world(updated_augments);
     std::cout<<updated_world.block<num,num>(1,1)<<std::endl;
-    usleep(200000);
+    usleep(100000);
     system("clear");
   }
 
